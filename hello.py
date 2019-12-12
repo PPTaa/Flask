@@ -33,5 +33,9 @@ def greeting(name):
     def_name = name
     return render_template('greeting.html', html_name = def_name)
 
+@app.route('/cube/<int:num>/')
+def cube(num):
+    return render_template('cube.html', num = num)
+
 if __name__=='__main__':
     app.run(debug=True)
