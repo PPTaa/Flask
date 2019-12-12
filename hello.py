@@ -107,5 +107,23 @@ def opgg():
     
     return render_template('opgg.html', username=username, opgg_url = opgg_url, win=win, lose=lose, tier=tier, winrate=winrate)
 
+@app.route('/daum_news')
+def daum_news():
+    url = "https://media.daum.net/ranking/popular"
+    res = requests.get(url).text
+    soup = BeautifulSoup(res, 'html.parser')
+    news_ranks=[]
+    for i in range(1,51):
+        rank = soup.select_one(f'#mArticle > div.rank_news > ul.list_news2 > li:nth-child({i}) > div.rank_num.rank_popular > span > span > span.screen_out').text
+        news = soup.select_one(f'#mArticle > div.rank_news > ul.list_news2 > li:nth-child({i}) > div.cont_thumb > strong > a').text
+        news_ranks.append(rank+"등"+"-"+news)
+        newslen = len(news_ranks)
+    for link in soup.findAll('a'):
+        if "href" in link.attrs:
+            print(link.attrs["href"])
+        print(link)
+    return render_template('daum_news.html', news_ranks=news_ranks, newslen=newslen)
+    
+
 if __name__=='__main__':
     app.run(debug=True)
