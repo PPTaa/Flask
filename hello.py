@@ -26,7 +26,12 @@ def html_file():
 @app.route('/variable')
 def variable():
     name = "이정철"
-    return render_template('variable.html', html_name=name)
+    return render_template('variable.html', html_name = name)
     
+@app.route('/greeting/<string:name>/') ##동적라우팅하는 부분
+def greeting(name):
+    def_name = name
+    return render_template('greeting.html', html_name = def_name)
+
 if __name__=='__main__':
     app.run(debug=True)
