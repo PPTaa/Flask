@@ -35,7 +35,8 @@ def greeting(name):
 
 @app.route('/cube/<int:num>/')
 def cube(num):
-    return render_template('cube.html', num = num)
+    cube_num=num**3
+    return render_template('cube.html', num = num, cube_num=cube_num)
 
 if __name__=='__main__':
     app.run(debug=True)
