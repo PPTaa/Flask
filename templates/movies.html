@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>현재 상영 영화 리스트</h1>
+    {% for movie in movies %}<!-- 파이썬에서 for문을 사용할 때 사용하는 기호 -->
+        <li>{{movie}}</li>
+        {% if movie == '겨울왕국2' %}
+            <li style="color: deeppink;">{{movie}}</li>
+        {% elif movie == '쥬만지' %}
+            <li style="color: blue;">{{movie}}</li>
+        {% else %}
+            <li>{{movie}}</li>
+        {% endif %}
+    {% endfor %}<!--for문의 마지막을 나타내는 것, html에서는 파이썬의 문법이 적용되지 않기 때문-->
+</body>
+</html>

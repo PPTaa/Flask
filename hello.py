@@ -62,6 +62,11 @@ def lunch1():
     img = menus[pick]
     return render_template('lunch1.html', pick=pick, img=img)
 
+@app.route('/movies')
+def movies():
+    movies = ['겨울왕국2','쥬만지', '포드v페라리']
+    return render_template('movies.html', movies=movies)
+
 
 if __name__=='__main__':
     app.run(debug=True)
