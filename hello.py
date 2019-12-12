@@ -67,6 +67,17 @@ def movies():
     movies = ['겨울왕국2','쥬만지', '포드v페라리']
     return render_template('movies.html', movies=movies)
 
+@app.route('/ping')
+def ping():
+    keyword1 = request.args.get('keyword1')
+    return render_template('ping.html', keyword1=keyword1)
+
+@app.route('/pong', methods=['GET','POST'])
+def pong():
+    # request.args => GET방식으로 데이터가 들어올때
+    print(request.form.get('keyword'))
+    keyword = request.form.get('keyword')
+    return render_template('pong.html', keyword=keyword)
 
 if __name__=='__main__':
     app.run(debug=True)
